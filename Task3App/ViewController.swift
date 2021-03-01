@@ -23,8 +23,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         firstSwitch.isOn = false
         secondSwitch.isOn = false
-        textField1.keyboardType = UIKeyboardType.numberPad
-        textField2.keyboardType = UIKeyboardType.numberPad
+        textField1.keyboardType = .numberPad
+        textField2.keyboardType = .numberPad
     }
 
     @IBAction private func calculationButton(_ sender: Any) {
@@ -35,24 +35,20 @@ class ViewController: UIViewController {
             return
         }
 
-        if firstSwitch.isOn == true {
-            calculationLabel1.text = "-\(num1)"
+        let signedNumber1: Int
+        if firstSwitch.isOn {
+            signedNumber1 = -num1
         } else {
-            calculationLabel1.text = "\(num1)"
+            signedNumber1 = num1
         }
 
-        if secondSwitch.isOn == true {
-            calculationLabel2.text = "-\(num2)"
+        let signedNumber2: Int
+        if secondSwitch.isOn {
+            signedNumber2 = -num2
         } else {
-            calculationLabel2.text = "\(num2)"
+            signedNumber2 = num2
         }
 
-        guard let result1 = Int(calculationLabel1.text!) else {
-            return
-        }
-        guard let result2 = Int(calculationLabel2.text!) else {
-            return
-        }
-        resultLabel.text = "\(result1 + result2)"       
+        resultLabel.text = "\(signedNumber1 + signedNumber2)"
     }
 }
